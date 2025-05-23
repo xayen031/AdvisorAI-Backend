@@ -31,6 +31,17 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Set environment variables
+        run: |
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> $GITHUB_ENV
+          echo "SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}" >> $GITHUB_ENV
+
+      - name: Write Google credentials to file
+        run: |
+          mkdir -p app/config
+          echo "${{ secrets.GOOGLE_CREDS_JSON }}" > app/config/google-creds.json
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
