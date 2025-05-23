@@ -1,0 +1,3 @@
+{
+  "tests/test_ws_endpoints.py::test_mic_real_audio_flow": true
+}

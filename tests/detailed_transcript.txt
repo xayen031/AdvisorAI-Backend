@@ -1,0 +1,56 @@
+Advisor: Good morning, John. Before we begin, could you please state your full name, email address, and phone number?
+Client: Certainly. My name is Johnathan A. Doe, my email is john.doe@example.com, and my phone number is +1 (555) 123-4567.
+Advisor: Thank you. And what is the name of your current employer or company?
+Client: I work at Acme Corporation in the finance department.
+Advisor: Great. How would you describe your client status—active, prospect, or lapse?
+Client: I'm currently an active client.
+Advisor: Understood. When was our last meeting or contact date?
+Client: We last spoke on March 15, 2025.
+Advisor: Noted. Could you provide your residential address?
+Client: I live at 123 Maple Street, Springfield, Illinois, 62704, USA.
+Advisor: Thank you. Now, let’s discuss your personal details. What is your date of birth?
+Client: I was born on January 1, 1980.
+Advisor: Any other personal notes or preferences you’d like me to include?
+Client: Please note I prefer evening calls and I’m allergic to peanuts.
+Advisor: Moving on to financial information—what is your annual income?
+Client: My income is $100,000 per year.
+Advisor: And your annual expenditure?
+Client: I spend about $40,000 annually on living expenses.
+Advisor: What assets do you currently hold?
+Client: I own a house valued at $300,000, and I have a brokerage account with stocks worth $50,000.
+Advisor: Do you have any outstanding liabilities or debts?
+Client: Yes, I have a mortgage of $200,000 and a car loan of $20,000.
+Advisor: How much do you have in your emergency fund?
+Client: I maintain an emergency fund of $10,000.
+Advisor: Do you have any protection policies, like insurance?
+Client: I have a life insurance policy with a $1,000,000 coverage.
+Advisor: What is your current retirement savings balance?
+Client: My 401(k) holds $200,000.
+Advisor: Have you done any estate planning or have a will?
+Client: Yes, I have a will and have set up a revocable trust.
+Advisor: Thank you. Let’s cover your family information. What is your marital status?
+Client: I am married.
+Advisor: Could you provide your spouse’s name and age?
+Client: My spouse is Jane Doe, age 38.
+Advisor: Do you have children? If so, their names and ages?
+Client: We have two children. Alice Doe, age 10, and Robert Doe, age 8.
+Advisor: What about your parents?
+Client: My mother, Mary Doe, is 65, and my father, Robert Doe Sr., is 67.
+Advisor: And any siblings?
+Client: I have one brother, Mark Doe, age 35.
+Advisor: Now, let’s discuss your risk profile. How would you describe your risk tolerance?
+Client: I have a moderate risk tolerance.
+Advisor: What is your investment horizon?
+Client: My horizon is about 15 years.
+Advisor: What are your primary investment objectives?
+Client: My main objective is growth.
+Advisor: Do you have any specific appetite for risk details?
+Client: I’m comfortable with moderate fluctuations.
+Advisor: In which areas do you focus your investments?
+Client: I primarily focus on equities and mutual funds.
+Advisor: What investment style do you prefer?
+Client: Balanced style—mix of growth and value.
+Advisor: Are you interested in ESG or socially responsible investments?
+Client: Yes, I’m interested in ESG opportunities.
+Advisor: Lastly, any tags or notes you’d like to add?
+Client: Please tag me as “VIP” and “Priority”, and note that I prefer communication via email.

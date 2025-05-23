@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transcription Demo</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    #transcripts, #responses { margin-top: 1rem; }
+    .message { padding: .5rem; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>Real‑Time Transcription & Assistant</h1>
+  <button id="start">Start Streaming</button>
+  <button id="stop" disabled>Stop</button>
+
+  <h2>Transcripts</h2>
+  <div id="transcripts"></div>
+
+  <h2>Assistant Responses</h2>
+  <div id="responses"></div>
+
+  <script>
+    let socket, audioContext, processorNode, inputNode;
+
+    const transcriptsEl = document.getElementById('transcripts');
+    const responsesEl   = document.getElementById('responses');
+    const startBtn      = document.getElementById('start');
+    const stopBtn       = document.getElementById('stop');
+
+    function logMessage(el, html) {
+      const div = document.createElement('div');
+      div.className = 'message';
+      div.innerHTML = html;
+      el.appendChild(div);
+      el.scrollTop = el.scrollHeight;
+    }
+
+    startBtn.onclick = async () => {
+      // open WS
+      socket = new WebSocket(
+        'ws://localhost:8000/mic_and_speaker?' +
+        'userId=demo&clientId=demo&sessionId=demo'
+      );
+      socket.binaryType = 'arraybuffer';
+
+      socket.onopen = () => {
+        startBtn.disabled = true;
+        stopBtn.disabled  = false;
+        logMessage(transcriptsEl, '<i>WebSocket connected</i>');
+      };
+
+      socket.onmessage = (evt) => {
+        const msg = JSON.parse(evt.data);
+        if (msg.type === 'mic_and_speaker_transcription') {
+          logMessage(transcriptsEl, msg.content);
+        } else if (msg.type === 'openai_assistant_delta') {
+          logMessage(responsesEl, msg.content);
+        } else if (msg.type === 'openai_assistant_completed') {
+          // no-op
+        }
+      };
+
+      socket.onclose = () => {
+        logMessage(transcriptsEl, '<i>WebSocket closed</i>');
+      };
+
+      // start audio context
+      audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate:16000 });
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      inputNode = audioContext.createMediaStreamSource(stream);
+
+      processorNode = audioContext.createScriptProcessor(4096, 1, 1);
+      processorNode.onaudioprocess = (e) => {
+        const floatData = e.inputBuffer.getChannelData(0);
+        // convert float to 16-bit PCM
+        const pcm = new Int16Array(floatData.length);
+        for (let i = 0; i < floatData.length; i++) {
+          const s = Math.max(-1, Math.min(1, floatData[i]));
+          pcm[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+        }
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(pcm.buffer);
+        }
+      };
+
+      inputNode.connect(processorNode);
+      processorNode.connect(audioContext.destination);
+    };
+
+    stopBtn.onclick = () => {
+      // stop streaming
+      processorNode.disconnect();
+      inputNode.disconnect();
+      socket.close();
+      startBtn.disabled = false;
+      stopBtn.disabled  = true;
+    };
+  </script>
+</body>
+</html>

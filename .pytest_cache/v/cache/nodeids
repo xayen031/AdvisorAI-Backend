@@ -1,0 +1,5 @@
+[
+  "tests/test_ws_endpoints.py::test_mic_and_speaker_text_flow",
+  "tests/test_ws_endpoints.py::test_mic_binary_flow",
+  "tests/test_ws_endpoints.py::test_mic_real_audio_flow"
+]
